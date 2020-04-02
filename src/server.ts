@@ -27,13 +27,14 @@ import { filterImageFromURL, deleteLocalFiles, isValidURL } from './util/util';
 
       res.sendFile(filteredImage, {}, function (err) {
         if (err) {
-          res.status(500).send(err);
+          console.log(err)
+          res.status(500).send("Internal server error");
         } else {
           deleteLocalFiles([filteredImage]);
         }
       })
     } catch (err) {
-      res.status(500).send(err);
+      res.status(422).send(err);
     }
 
   });
